@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<extension key="com.membershipperiod.civicrm" type="module">
+  <file>mprd</file>
+  <name>Membership Period</name>
+  <description>This extension enables you to record memberships in periods</description>
+  <license>AGPL</license>
+  <maintainer>
+    <author>Roland Oduberu</author>
+    <email>rolandoduberu@gmail.com</email>
+  </maintainer>
+  <urls>
+    <url desc="Support"></url>
+    <url desc="Installation Instructions"></url>
+    <url desc="Documentation"></url>
+    <url desc="Release Notes"></url>
+    <url desc="Getting Started"></url>
+  </urls>
+  <releaseDate>2018-03-30</releaseDate>
+  <version>1.0</version>
+  <develStage>alpha</develStage>
+  <compatibility>
+    <ver>4.7</ver>
+  </compatibility>
+  <comments>This is a new, undeveloped module</comments>
+  <civix>
+    <namespace>CRM/mPRD</namespace>
+  </civix>
+</extension>
