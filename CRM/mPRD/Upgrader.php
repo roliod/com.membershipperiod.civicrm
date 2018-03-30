@@ -17,6 +17,12 @@ class CRM_mPRD_Upgrader extends CRM_mPRD_Upgrader_Base {
     $this->executeSqlFile('sql/install.sql');
   }
 
+  /* Example: Run an external SQL script when the module is uninstalled.
+   *
+   */
+  public function uninstall() {
+    $this->executeSqlFile('sql/uninstall.sql');
+  }
   /**
    * Example: Work with entities usually not available during the install step.
    *
@@ -33,13 +39,6 @@ class CRM_mPRD_Upgrader extends CRM_mPRD_Upgrader_Base {
     civicrm_api3('Setting', 'create', array(
       'myWeirdFieldSetting' => array('id' => $customFieldId, 'weirdness' => 1),
     ));
-  }
-
-  /**
-   * Example: Run an external SQL script when the module is uninstalled.
-   *
-  public function uninstall() {
-   $this->executeSqlFile('sql/myuninstall.sql');
   }
 
   /**
