@@ -10,18 +10,20 @@ class CRM_mPRD_Upgrader extends CRM_mPRD_Upgrader_Base {
   // upgrade tasks. They are executed in order (like Drupal's hook_update_N).
 
 
-  /* Example: Run an external SQL script when the module is installed.
-   *
+  /**
+   * Example: Run an external SQL script when the module is installed.
    */
-  public function install() {
-    $this->executeSqlFile('sql/install.sql');
+  public function install()
+  {
+      $this->executeSqlFile('sql/install.sql');
   }
 
-  /* Example: Run an external SQL script when the module is uninstalled.
-   *
+  /*
+   * Example: Run an external SQL script when the module is uninstalled.
    */
-  public function uninstall() {
-    $this->executeSqlFile('sql/uninstall.sql');
+  public function uninstall()
+  {
+      $this->executeSqlFile('sql/uninstall.sql');
   }
   /**
    * Example: Work with entities usually not available during the install step.

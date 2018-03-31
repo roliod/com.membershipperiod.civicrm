@@ -4,6 +4,17 @@ require_once 'mprd.civix.php';
 use CRM_mPRD_ExtensionUtil as E;
 
 /**
+ * Catch database posts.
+ *
+ */
+function mprd_civicrm_post($op, $objectName, $objectId, &$objectRef)
+{
+    if ($objectName == 'Membership') {
+        // die(print_r([$objectName, $objectRef]));
+    }
+}
+
+/**
  * Implements hook_civicrm_config().
  *
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_config
