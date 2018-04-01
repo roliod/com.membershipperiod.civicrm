@@ -28,16 +28,30 @@ function mprd_civicrm_post($op, $objectName, $objectId, &$objectRef)
     }
 }
 
+/**
+ * Catch membership obj before update
+ *
+ *
+ * @access public
+ * @return
+ */
 function mprd_civicrm_pre($op, $objectName, $id, &$params)
 {
     if ($objectName == 'Membership') { //make sure its a memebership
 
-        if ($op == 'edit') { //before a memebership
+        if ($op == 'edit') { //before a memebership update
             save_membership_update($params);
         }
     }
 }
 
+/**
+ * Save membership update
+ *
+ *
+ * @access public
+ * @return true, empty on failure
+ */
 function save_membership_update($params)
 {
     if (! isset($params['end_date'])) { //check if its a renewal or period edit
@@ -61,8 +75,17 @@ function save_membership_update($params)
     $membership_period_id = last_membership_period($contact_id);
 
     insert_membership_period_to_membership($membership_period_id, $params['id']);
+
+    return true;
 }
 
+/**
+ * Get contact id fro m membership table
+ *
+ *
+ * @access public
+ * @return int, false on failure
+ */
 function fetch_contact_id_from_membership($membership_id)
 {
     $sql = "SELECT contact_id FROM civicrm_membership WHERE id = $membership_id";
@@ -76,6 +99,13 @@ function fetch_contact_id_from_membership($membership_id)
     return $dao->contact_id;
 }
 
+/**
+ * Get current start date, just in case we are editing just the end date
+ * Where membership has not expired
+ *
+ * @access public
+ * @return string
+ */
 function fetch_current_start_date($membership_id)
 {
     $sql = "SELECT start_date FROM civicrm_membership WHERE id = $membership_id";
@@ -89,6 +119,13 @@ function fetch_current_start_date($membership_id)
     return $dao->start_date;
 }
 
+/**
+ * Log contacts current membership period before update
+ *
+ *
+ * @access public
+ * @return true
+ */
 function log_current_period($membership_id)
 {
     $sql = "SELECT start_date, end_date, contact_id FROM civicrm_membership WHERE id = $membership_id";
@@ -105,8 +142,17 @@ function log_current_period($membership_id)
     $end_date = str_replace('-', '', $dao->end_date);
 
     save_period($start_date, $end_date, $dao->contact_id, $period);
+
+    return true;
 }
 
+/**
+ * Save a membership period
+ *
+ *
+ * @access public
+ * @return true
+ */
 function save_period($start_date, $end_date, $contact_id, $period)
 {
     $period = fetch_membership_period($contact_id);
@@ -119,6 +165,13 @@ function save_period($start_date, $end_date, $contact_id, $period)
     return true;
 }
 
+/**
+ * Get current period the contacts membership is
+ *
+ *
+ * @access public
+ * @return int
+ */
 function fetch_membership_period($contact_id = '')
 {
     $sql = "SELECT period FROM civicrm_mprd_membership_period
@@ -134,6 +187,13 @@ function fetch_membership_period($contact_id = '')
     return $dao->period + 1;
 }
 
+/**
+ * Insert new membership period
+ *
+ *
+ * @access public
+ * @return true
+ */
 function insert_membership_period($objectRef, $period)
 {
     $sql = "INSERT INTO civicrm_mprd_membership_period (period, start_date, end_date, contact_id)
@@ -144,6 +204,13 @@ function insert_membership_period($objectRef, $period)
     return true;
 }
 
+/**
+ * Get contacts current membership period id
+ *
+ *
+ * @access public
+ * @return mixed false on failure, membership id on success
+ */
 function last_membership_period($contact_id)
 {
     $sql = "SELECT id FROM civicrm_mprd_membership_period
@@ -158,6 +225,13 @@ function last_membership_period($contact_id)
     return $dao->id;
 }
 
+/**
+ * Update membership with the current membership period
+ *
+ *
+ * @access public
+ * @return true
+ */
 function insert_membership_period_to_membership($membership_period, $membership)
 {
     $sql = "UPDATE civicrm_membership SET membership_period_id = $membership_period
