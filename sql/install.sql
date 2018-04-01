@@ -8,7 +8,8 @@ CREATE TABLE `civicrm_mprd_membership_period` (
   `contribution_id` int DEFAULT 0 COMMENT 'Contribution id if a payment is received',
   `contact_id` int DEFAULT 0 COMMENT 'Contact id',
   PRIMARY KEY ( `id` ),
-  KEY (`contribution_id`)
+  KEY (`contribution_id`),
+  KEY (`contact_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Table to store membership period';
 
 
