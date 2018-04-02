@@ -26,6 +26,17 @@ function mprd_civicrm_post($op, $objectName, $objectId, &$objectRef)
         }
 
     }
+
+    if ($objectName == 'Contribution') {
+
+        if ($op == 'create') {
+
+            attach_contribution_to_period($objectRef->contact_id, $objectRef->id);
+
+            return true;
+        }
+
+    }
 }
 
 /**
@@ -43,6 +54,101 @@ function mprd_civicrm_pre($op, $objectName, $id, &$params)
             save_membership_update($params);
         }
     }
+}
+
+/**
+ * Attach contibution id to membership period if a payment was taken
+ *
+ *
+ * @access public
+ * @return true
+ */
+function attach_contribution_to_period($contact_id, $contribution_id)
+{
+    if (payment_taken_for_membership($contact_id)) {
+
+        $membership_period_id = fetch_current_membership($contact_id);
+
+        $sql = "UPDATE civicrm_mprd_membership_period SET contribution_id = $contribution_id
+                WHERE id = $membership_period_id";
+
+        CRM_Core_DAO::executeQuery( $sql, CRM_Core_DAO::$_nullArray );
+
+        return true;
+    }
+
+    return true;
+}
+
+/**
+ * Get contacts current membership period id
+ *
+ *
+ * @access public
+ * @return int
+ */
+function fetch_current_membership($contact_id)
+{
+    $sql = "SELECT id FROM civicrm_mprd_membership_period WHERE contact_id = $contact_id ORDER BY id DESC LIMIT 1";
+
+    $dao = CRM_Core_DAO::executeQuery( $sql, CRM_Core_DAO::$_nullArray );
+
+    if (! $dao->fetch()) { //just incase we can't find anything, create a membership period
+        $membership = fetch_contacts_membership_data($contact_id);
+
+        $period = fetch_membership_period($contact_id);
+
+        $start_date = str_replace('-', '', $membership->start_date);
+        $end_date = str_replace('-', '', $membership->end_date);
+
+        save_period($start_date, $end_date, $contact_id, $period);
+
+        return fetch_current_membership($contact_id);
+    }
+
+    return $dao->id;
+}
+
+/**
+ * Get all data for contacts membership
+ *
+ *
+ * @access public
+ * @return object
+ */
+function fetch_contacts_membership_data($contact_id)
+{
+    $sql = "SELECT * FROM civicrm_membership WHERE contact_id = $contact_id";
+
+    $dao = CRM_Core_DAO::executeQuery( $sql, CRM_Core_DAO::$_nullArray );
+
+    $dao->fetch();
+
+    return $dao;
+}
+
+/**
+ * Check if a payment was taken for contacts memebership
+ *
+ *
+ * @access public
+ * @return true, false on failure
+ */
+function payment_taken_for_membership($contact_id = '')
+{
+    $sql = "SELECT is_pay_later FROM civicrm_membership WHERE contact_id = $contact_id";
+
+    $dao = CRM_Core_DAO::executeQuery( $sql, CRM_Core_DAO::$_nullArray );
+
+    if (! $dao->fetch()) { //just incase we can't find anything, thats wierd but okay!
+        return false;
+    }
+
+    if ($dao->is_pay_later == true) {
+        return false;
+    }
+
+    return true;
 }
 
 /**
