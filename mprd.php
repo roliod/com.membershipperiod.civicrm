@@ -14,7 +14,7 @@ function mprd_civicrm_post($op, $objectName, $objectId, &$objectRef)
         $contact_id = isset($objectRef->contact_id) ? $objectRef->contact_id: '';
 
         if ($op == 'create') { //after creating a new memebership
-
+            
             $membership_period = fetch_membership_period($contact_id);
 
             insert_membership_period($objectRef, $membership_period);
