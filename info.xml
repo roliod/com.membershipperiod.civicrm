@@ -19,7 +19,7 @@
   <compatibility>
     <ver>4.7</ver>
   </compatibility>
-  <comments>This is a new, undeveloped module</comments>
+  <comments>This is a CiviCRM 4.7-only release.</comments>
   <civix>
     <namespace>CRM/mPRD</namespace>
   </civix>
