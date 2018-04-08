@@ -3,6 +3,14 @@
 
 com.membershipperiod.civicrm is a CiviCRM extension that enables you keep record of the each membership creation or renewal.
 
+For example:
+
+If a membership commenced on 1 Jan 2014 and each term was of 12 months in length, by 1 Jan 2016 the member would be renewing for their 3rd term. The terms would be:
+
+Term/Period 1: 1 Jan 2014 - 31 Dec 2014
+Term/Period 2: 1 Jan 2015 - 31 Dec 2015
+Term/Period 3: 1 Jan 2016 - 31 Dec 2016
+
 ## Requirements
 
 * PHP v5.4+
@@ -48,13 +56,6 @@ To see the membership period in the front end do the following:
 * Click on any contact
 * Click on the Membership Periods Tab (Its the last one)
 
-## Membership Periods
-
-If a membership commenced on 1 Jan 2014 and each term was of 12 months in length, by 1 Jan 2016 the member would be renewing for their 3rd term. The terms would be:
-
-Term/Period 1: 1 Jan 2014 - 31 Dec 2014
-Term/Period 2: 1 Jan 2015 - 31 Dec 2015
-Term/Period 3: 1 Jan 2016 - 31 Dec 2016
 
 ## Please Note
 
