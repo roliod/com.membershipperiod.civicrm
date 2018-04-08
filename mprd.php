@@ -51,8 +51,6 @@ function mprd_civicrm_pre($op, $objectName, $id, &$params)
     if ($objectName == 'Membership') { //make sure its a memebership
 
         if ($op == 'edit') { //before a memebership update
-
-            die(print_r($params));
             save_membership_update($params);
         }
     }
@@ -612,31 +610,3 @@ function mprd_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
 function mprd_civicrm_entityTypes(&$entityTypes) {
   _mprd_civix_civicrm_entityTypes($entityTypes);
 }
-
-// --- Functions below this ship commented out. Uncomment as required. ---
-
-/**
- * Implements hook_civicrm_preProcess().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
- *
-function mprd_civicrm_preProcess($formName, &$form) {
-
-} // */
-
-/**
- * Implements hook_civicrm_navigationMenu().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
- *
-function mprd_civicrm_navigationMenu(&$menu) {
-  _mprd_civix_insert_navigation_menu($menu, 'Mailings', array(
-    'label' => E::ts('New subliminal message'),
-    'name' => 'mailing_subliminal_message',
-    'url' => 'civicrm/mailing/subliminal',
-    'permission' => 'access CiviMail',
-    'operator' => 'OR',
-    'separator' => 0,
-  ));
-  _mprd_civix_navigationMenu($menu);
-} // */

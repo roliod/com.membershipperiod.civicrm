@@ -1,19 +1,18 @@
 # com.membershipperiod.civicrm
 
-![Screenshot](/images/screenshot.png)
 
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
-
-The extension is licensed under [AGPL-3.0](LICENSE.txt).
+com.membershipperiod.civicrm is a CiviCRM extension that enables you keep record of the each membership creation or renewal.
 
 ## Requirements
 
 * PHP v5.4+
-* CiviCRM (*FIXME: Version number*)
+* CiviCRM (4.7.x)
 
 ## Installation (Web UI)
 
-This extension has not yet been published for installation via the web UI.
+This extension follows the standard installation method - if you've got a supported CiviCRM version and you've set up your extensions directory, it'll appear in the Manage Extensions list as 'Membership Period (com.membershipperiod.civicrm)'. Hit Install and viola!.
+
+If you need help with installing extensions, try: https://wiki.civicrm.org/confluence/display/CRMDOC/Extensions
 
 ## Installation (CLI, Zip)
 
@@ -22,7 +21,7 @@ install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
 cd <extension-dir>
-cv dl com.membershipperiod.civicrm@https://github.com/FIXME/com.membershipperiod.civicrm/archive/master.zip
+cv dl com.membershipperiod.civicrm@https://github.com/roliod/com.membershipperiod.civicrm/archive/master.zip
 ```
 
 ## Installation (CLI, Git)
@@ -31,14 +30,32 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
-git clone https://github.com/FIXME/com.membershipperiod.civicrm.git
+git clone https://github.com/roliod/com.membershipperiod.civicrm
 cv en civicrm
 ```
 
 ## Usage
 
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
+This extension goes to work when the following actions are taken:
 
-## Known Issues
+* Create a new membership
+* Renew an existing membership
+* Add a contribution record (This is linked to the membership period)
 
-(* FIXME *)
+To see the membership period in the front end do the following:
+
+* Go to the Membership Dashboard
+* Click on any contact
+* Click on the Membership Periods Tab (Its the last one)
+
+## Membership Periods
+
+If a membership commenced on 1 Jan 2014 and each term was of 12 months in length, by 1 Jan 2016 the member would be renewing for their 3rd term. The terms would be:
+
+Term/Period 1: 1 Jan 2014 - 31 Dec 2014
+Term/Period 2: 1 Jan 2015 - 31 Dec 2015
+Term/Period 3: 1 Jan 2016 - 31 Dec 2016
+
+## Please Note
+
+Contribution records are linked to membership periods only when a payment was taken for the existing membership or renewal.

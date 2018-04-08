@@ -9,15 +9,13 @@
     <email>rolandoduberu@gmail.com</email>
   </maintainer>
   <urls>
-    <url desc="Support"></url>
-    <url desc="Installation Instructions"></url>
-    <url desc="Documentation"></url>
-    <url desc="Release Notes"></url>
-    <url desc="Getting Started"></url>
+    <url desc="Support">https://github.com/roliod/com.membershipperiod.civicrm/issues?state=open</url>
+    <url desc="Installation Instructions">https://github.com/roliod/com.membershipperiod.civicrm</url>
+    <url desc="Documentation">https://github.com/roliod/com.membershipperiod.civicrm</url>
   </urls>
   <releaseDate>2018-03-30</releaseDate>
-  <version>1.0</version>
-  <develStage>alpha</develStage>
+  <version>1.0.1</version>
+  <develStage>beta</develStage>
   <compatibility>
     <ver>4.7</ver>
   </compatibility>
