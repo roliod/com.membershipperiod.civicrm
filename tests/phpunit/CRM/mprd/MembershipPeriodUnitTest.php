@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Standalone scripts are not away of CiviCRM
+ * Standalone scripts are not aware of CiviCRM
  * Comment this out and enter the path to your civicrm.settings.php
  *
 require_once 'PATH_TO_YOUR_civicrm.settings.php';
@@ -20,7 +20,7 @@ class CRM_mprd_MembershipPeriodUnitTest extends \PHPUnit_Framework_TestCase {
   {
 
       /*
-       * Standalone scripts are not away of CiviCRM
+       * Standalone scripts are not aware of CiviCRM
        * Comment this out
        *
       CRM_Core_Config::singleton();

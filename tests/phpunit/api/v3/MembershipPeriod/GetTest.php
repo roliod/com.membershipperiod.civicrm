@@ -1,6 +1,6 @@
 <?php
 /*
- * Standalone scripts are not away of CiviCRM
+ * Standalone scripts are not aware of CiviCRM
  * Comment this out and enter the path to your civicrm.settings.php
  *
 require_once 'PATH_TO_YOUR_civicrm.settings.php';
@@ -30,7 +30,7 @@ class api_v3_MembershipPeriod_GetTest extends \PHPUnit_Framework_TestCase implem
   public function setUp()
   {
       /*
-       * Standalone scripts are not away of CiviCRM
+       * Standalone scripts are not aware of CiviCRM
        * Comment this out
        *
       CRM_Core_Config::singleton();
