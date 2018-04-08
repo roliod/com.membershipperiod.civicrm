@@ -179,8 +179,8 @@ function fetch_default_period($contact_id)
 
     $period[] = array(
         'period' => 1,
-        'start_date' => $contact->start_date,
-        'end_date' => $contact->end_date,
+        'start_date' => isset($contact->start_date) ? $contact->start_date: null,
+        'end_date' => isset($contact->end_date) ? $contact->end_date: null,
         'contribution_id' => $contribution
     );
 
