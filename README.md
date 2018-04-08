@@ -1,6 +1,5 @@
 # com.membershipperiod.civicrm
 
-
 com.membershipperiod.civicrm is a CiviCRM extension that enables you keep record of the each membership creation or renewal.
 
 For example:
