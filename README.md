@@ -59,3 +59,5 @@ To see the membership period in the front end do the following:
 ## Please Note
 
 Contribution records are linked to membership periods only when a payment was taken for the existing membership or renewal.
+
+Here is a [demo](http://ec2-18-216-147-214.us-east-2.compute.amazonaws.com/?q=civicrm/dashboard). 
