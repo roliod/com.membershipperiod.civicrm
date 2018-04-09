@@ -37,8 +37,8 @@ Sysadmins and developers may clone the [Git](https://en.wikipedia.org/wiki/Git) 
 install it with the command-line tool [cv](https://github.com/civicrm/cv).
 
 ```bash
+cd <extension-dir>
 git clone https://github.com/roliod/com.membershipperiod.civicrm.git
-cv en civicrm
 ```
 
 ## Usage
@@ -60,4 +60,4 @@ To see the membership period in the front end do the following:
 
 Contribution records are linked to membership periods only when a payment was taken for the existing membership or renewal.
 
-Here is a [demo](http://ec2-18-216-147-214.us-east-2.compute.amazonaws.com/?q=civicrm/dashboard). 
+Here is a [demo](http://ec2-18-216-147-214.us-east-2.compute.amazonaws.com/?q=civicrm/dashboard).
