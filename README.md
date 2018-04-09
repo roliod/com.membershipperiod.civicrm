@@ -1,4 +1,4 @@
-# This extension is created as a test for Compucorp application process and is not ready for production deployment
+This extension is created as a test for Compucorp application process and is not ready for production deployment
 
 # com.membershipperiod.civicrm
 
