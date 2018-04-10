@@ -1,21 +1,12 @@
 <?php
-/*
- * Standalone scripts are not aware of CiviCRM
- * Comment this out and enter the path to your civicrm.settings.php
- *
-require_once 'PATH_TO_YOUR_civicrm.settings.php';
-require_once 'CRM/Core/Config.php';
-*/
 
-use Civi\Test\HeadlessInterface;
-use Civi\Test\HookInterface;
-use Civi\Test\TransactionalInterface;
+require_once __DIR__ . '../../../../CRM/mprd/BaseUnitTestCase.php';
 
 /**
  * MembershipPeriod.Get API Test Case
  * @group headless
  */
-class api_v3_MembershipPeriod_GetTest extends \PHPUnit_Framework_TestCase implements HeadlessInterface, HookInterface, TransactionalInterface {
+class api_v3_MembershipPeriod_GetTest extends BaseUnitTestCase {
 
   public function setUpHeadless()
   {
@@ -29,13 +20,6 @@ class api_v3_MembershipPeriod_GetTest extends \PHPUnit_Framework_TestCase implem
    */
   public function setUp()
   {
-      /*
-       * Standalone scripts are not aware of CiviCRM
-       * Comment this out
-       *
-      CRM_Core_Config::singleton();
-      */
-
       parent::setUp();
   }
 
@@ -64,17 +48,44 @@ class api_v3_MembershipPeriod_GetTest extends \PHPUnit_Framework_TestCase implem
         'contact_type' => "Individual",
       );
 
-      $contact = CRM_Contact_BAO_Contact::create($contact_params, $ids, true);
+      //create contact
+      $contact = $this->create_contact($contact_params);
 
-      if (! isset($contact->id)) {
+      if ($contact['status'] == false) {
           self::assertTrue(FALSE);
       } else {
-          $result = civicrm_api3('MembershipPeriod', 'Get', array(
-              'sequential' => 1,
-              'contact_id' => $contact->id
-          ));
 
-          $this->assertEquals(false, $result['is_error']);
+          //create membership
+          $membership_params = array(
+             'contact_id' => $contact['message'],
+             'membership_type_id' => 2,
+             'join_date' => '20180406',
+             'start_date' => '20180406',
+             'end_date' => '20181030',
+             'source' => 'Payment002',
+             'status_id' => 1,
+             'is_override' => null,
+             'max_related' => null,
+             'is_pay_later' => 1
+          );
+
+          $membership = $this->create_membership($membership_params);
+
+          if ($membership['status'] == false) {
+
+              self::assertTrue(FALSE);
+
+          } else {
+
+              $result = civicrm_api3('MembershipPeriod', 'Get', array(
+                  'sequential' => 1,
+                  'contact_id' => $contact['message']
+              ));
+
+              $this->assertEquals(false, $result['is_error']);
+
+              self::assertTrue(TRUE);
+          }
       }
   }
 
