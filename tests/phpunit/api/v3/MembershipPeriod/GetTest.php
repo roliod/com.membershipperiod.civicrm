@@ -71,7 +71,7 @@ class api_v3_MembershipPeriod_GetTest extends \PHPUnit_Framework_TestCase implem
       } else {
           $result = civicrm_api3('MembershipPeriod', 'Get', array(
               'sequential' => 1,
-              'contact_id' => 4
+              'contact_id' => $contact->id
           ));
 
           $this->assertEquals(false, $result['is_error']);
