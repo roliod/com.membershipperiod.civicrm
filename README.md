@@ -1,5 +1,3 @@
-This extension is created as a test for Compucorp application process and is not ready for production deployment
-
 # com.membershipperiod.civicrm
 
 com.membershipperiod.civicrm is a CiviCRM extension that enables you keep record of the each membership creation or renewal.
